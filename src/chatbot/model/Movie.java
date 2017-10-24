@@ -2,7 +2,7 @@ package chatbot.model;
 
 import java.time.LocalDate;
 
-public class ChatBotMovie
+public class Movie
 {
 	private String title;
 	private String genre;
@@ -12,7 +12,7 @@ public class ChatBotMovie
 	private LocalDate releaseDate;
 	private double starScore;
 	
-	public ChatBotMovie(String title)
+	public Movie(String title)
 	{
 		this.title = "";
 		this.genre = null;

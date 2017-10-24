@@ -4,9 +4,9 @@ import java.util.List;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class ChatBotModel
+public class Chatbot
 {
-	private List<ChatBotMovie> movieList;
+	private List<Movie> movieList;
 	private List<String> shoppingList;
 	private List<String> cuteAnimalMemes;
 	private String [] verbs;
@@ -18,7 +18,7 @@ public class ChatBotModel
 	private String intro;
 	private LocalTime currentTime;
 	
-	public ChatBotModel(String username)
+	public Chatbot(String username)
 	{
 		this.movieList = null;
 		this.shoppingList = null;
@@ -61,7 +61,18 @@ public class ChatBotModel
 	
 	public boolean lengthChecker(String input)
 	{
-		return false;
+		boolean validLength = false;
+		
+		if (input != null)
+		{
+			if (input.length() > 2)
+			{
+				validLength = true;
+			}
+		}
+		
+		
+		return validLength;
 	}
 	
 	public boolean htmlTagChecker(String input)
@@ -109,7 +120,7 @@ public class ChatBotModel
 		return false;
 	}
 	
-	public List<ChatBotMovie> getMovieList()
+	public List<Movie> getMovieList()
 	{
 		return movieList;
 	}

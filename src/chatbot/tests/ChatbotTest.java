@@ -1,6 +1,5 @@
 package chatbot.tests;
-import chatbot.model.ChatBotModel;
-import chatbot.model.ChatBotMovie;
+
 import static org.junit.Assert.*;
 
 import java.time.LocalTime;
@@ -9,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-//import chatbot.model.Chatbot;
+import chatbot.model.Chatbot;
 
 public class ChatbotTest
 {
@@ -18,7 +17,7 @@ public class ChatbotTest
 	@Before
 	public void setUp() throws Exception
 	{
-		testedChatbot = new ChatbotTest("Sample");
+		testedChatbot = new Chatbot("Sample");
 	}
 
 	@After
