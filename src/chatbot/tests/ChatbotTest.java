@@ -12,7 +12,7 @@ import chatbot.model.Chatbot;
 import chatbot.tests.AllTests;
 public class ChatbotTest
 {
-	private ChatbotTest testedChatbot;
+	private Chatbot testedChatbot;
 	
 	@Before
 	public void setUp() throws Exception
