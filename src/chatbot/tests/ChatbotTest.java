@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import chatbot.model.Chatbot;
-
+import chatbot.tests.AllTests;
 public class ChatbotTest
 {
 	private ChatbotTest testedChatbot;
