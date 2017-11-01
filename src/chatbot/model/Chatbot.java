@@ -29,9 +29,15 @@ public class Chatbot
 		this.content = null; 
 		this.intro = null;
 		this.currentTime = null;
-		this.topics = null;
+		this.topics = new String [7];
 		this.verbs = new String [4];
-		this.followUps = null;
+		this.followUps = new String [5];
+		
+		buildVerbs();
+		buildTopics();
+		buildFollowups();
+		buildQuestions();
+		buildShoppingList();
 	}
 
 	private void buildVerbs()
@@ -72,7 +78,28 @@ public class Chatbot
 	
 	public String processConversation(String input)
 	{
-		return null;
+		String chatbotResponse = "";
+		chatbotResponse += "you said:" + "\n" + input + "\n";
+		
+		chatbotResponse += buildChatbotResponse();
+		
+		return chatbotResponse;
+	}
+	private String buildChatbotResponse()
+	{
+		String response = "I ";
+		int random = (int) (Math.random() * verbs.length);
+		
+		response += verbs[random];
+		
+		
+		random = (int) (Math.random() * topics.length);
+		response  += " " + topics[random] + ". \n";
+		
+		random = (int) (Math.random() * questions.length);
+		response += questions[random];
+		
+		return response;
 	}
 	
 	public boolean lengthChecker(String input)
@@ -86,6 +113,7 @@ public class Chatbot
 				validLength = true;
 			}
 		}
+		
 		
 		
 		return validLength;
