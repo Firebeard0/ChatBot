@@ -24,7 +24,7 @@ public class Chatbot
 		this.shoppingList = new  ArrayList<String>();
 		this.cuteAnimalMemes = null;
 		this.currentTime = null;
-		this.questions = null;
+		this.questions = new String[6];                             
 		this.username = username;
 		this.content = null; 
 		this.intro = null;
@@ -34,8 +34,8 @@ public class Chatbot
 		this.followUps = new String [5];
 		
 		buildVerbs();
-		buildTopics();
-		buildFollowups();
+//		buildTopics();
+//		buildFollowups();
 		buildQuestions();
 		buildShoppingList();
 	}
@@ -73,7 +73,12 @@ public class Chatbot
 	
 	private void buildQuestions()
 	{
-		
+		questions[0]="What is your name?";
+		questions[1]="What is your favorite color?";
+		questions[2]="What is your weight?";
+		questions[3]="What is your number?";
+		questions[4]="What is your adress?";
+		questions[5]="What is your call sign?";
 	}
 	
 	public String processConversation(String input)
@@ -156,12 +161,25 @@ public class Chatbot
 
 	public boolean quitChecker(String exitString)
 	{
+		if (exitString == null)
+		{
+			return false;
+		}
+		if (exitString.equalsIgnoreCase("quit"))
+		{
+			return true;
+		}
 		return false;
 	}
 
 	public boolean keyboardMashChecker(String sample)
 	{
-		return false;
+//		String mash = "qwertyuiop[]asdfghjkl;'zxcvbnm,./0;";
+//		for (int i=0; i < mash.length() - 2; i ++)
+//		{
+//			
+//		}
+	return false;
 	}
 	
 	public List<Movie> getMovieList()
