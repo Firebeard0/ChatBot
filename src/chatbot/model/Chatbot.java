@@ -20,14 +20,14 @@ public class Chatbot
 	
 	public Chatbot(String username)
 	{
-		this.movieList = null;
+		this.movieList = new  ArrayList<Movie>();
 		this.shoppingList = new  ArrayList<String>();
-		this.cuteAnimalMemes = null;
+		this.cuteAnimalMemes = new ArrayList<String>();
 		this.currentTime = null;
-		this.questions = new String[6];                             
+		this.questions = new String[10];                             
 		this.username = username;
-		this.content = null; 
-		this.intro = null;
+		this.content = ""; 
+		this.intro = "";
 		this.currentTime = null;
 		this.topics = new String [7];
 		this.verbs = new String [4];
@@ -38,6 +38,7 @@ public class Chatbot
 //		buildFollowups();
 		buildQuestions();
 		buildShoppingList();
+		buildMovieList();
 	}
 
 	private void buildVerbs()
@@ -49,7 +50,12 @@ public class Chatbot
 	}
 	private void buildMovieList()
 	{
-		
+		movieList.add(new Movie("Captain America"));
+		movieList.add(new Movie("Thor"));
+		movieList.add(new Movie("Hulk"));
+		movieList.add(new Movie("Ironman"));
+		movieList.add(new Movie("Spiderman"));
+		movieList.add(new Movie("Hidden Figures"));
 	}
 	
 	private void buildShoppingList()
@@ -79,6 +85,11 @@ public class Chatbot
 		questions[3]="What is your number?";
 		questions[4]="What is your adress?";
 		questions[5]="What is your call sign?";
+		questions[6]="What is your favorite car?";
+		questions[7]="What is your favorite candy?";
+		questions[8]="What is your hair color?";
+		questions[9]="What is your toothbrush color?";
+		
 	}
 	
 	public String processConversation(String input)
@@ -127,11 +138,21 @@ public class Chatbot
 	public boolean htmlTagChecker(String input)
 	{
 		return false;
-	}
+	} 
 	
 	public boolean userNameChecker(String input)
 	{
-		return false;
+		boolean valid = false;
+		if (input.substring(0).equals("@"));
+				{
+			valid = true;
+				}
+		for (int i = 1; i > input.length(); i ++)	
+		if (input.substring(i).equals("@"))
+		{
+			valid  = false;
+		}
+		return valid;
 	}
 	
 	public boolean contentChecker(String contentCheck)
@@ -146,17 +167,33 @@ public class Chatbot
 	
 	public boolean shoppingListChecker(String shoppingItem)
 	{
-		return false;
+		boolean valid  = false;
+		if (shoppingItem != "slug bait")
+		{
+			valid = true;
+		}
+        return valid;
 	}
 	
 	public boolean movieTitleChecker(String title)
 	{
-		return false;
+		boolean valid = false;
+		if (title != "")
+		{
+			valid = true;
+		}
+		return valid;
 	}
 	
 	public boolean movieGenreChecker(String genre)
 	{
-		return false;
+		boolean valid = false;
+		if (genre != "")
+		{
+			valid = true;
+		}
+		
+		return valid;
 	}
 
 	public boolean quitChecker(String exitString)

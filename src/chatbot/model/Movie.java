@@ -14,8 +14,8 @@ public class Movie
 	
 	public Movie(String title)
 	{
-		this.title = "";
-		this.genre = null;
+		this.title = title;
+		this.genre = "Thriller";
 		this.ratingMPAA = "PG13";
 		this.review = null;
 		this.length = 1;
@@ -30,7 +30,6 @@ public class Movie
 
 	public String getGenre()
 	{
-		this.genre = "@@@@@@@";
 		return genre;
 	}
 
