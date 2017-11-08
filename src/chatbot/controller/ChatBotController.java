@@ -6,7 +6,7 @@ public class ChatBotController
 	private Chatbot chatbot;
 	private ChatotDisplay display;
 //	private Chatframe appFrame;
-	
+
 	public ChatBotController()
 	{
 		chatbot = new Chatbot("Noah Uffens");

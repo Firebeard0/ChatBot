@@ -26,7 +26,7 @@ public class Chatbot
 		this.currentTime = null;
 		this.questions = new String[10];                             
 		this.username = username;
-		this.content = ""; 
+		this.content = "Content"; 
 		this.intro = "";
 		this.currentTime = null;
 		this.topics = new String [7];
@@ -115,6 +115,13 @@ public class Chatbot
 		random = (int) (Math.random() * questions.length);
 		response += questions[random];
 		
+		random = (int) (Math.random() * 2);
+				
+			if (random % 2 == 0)
+			{
+				random = (int) (Math.random() * movieList.size());
+				response += "\n" +  movieList.get(random).getTitle() + " is a great movie!";
+			}
 		return response;
 	}
 	
@@ -143,28 +150,46 @@ public class Chatbot
 	public boolean userNameChecker(String input)
 	{
 		boolean valid = false;
-		if (input.substring(0).equals("@"));
-				{
+		if (input != null && input.startsWith("@") && !input.substring(1, input.length() - 1).contains("@")) {
 			valid = true;
-				}
-		for (int i = 1; i > input.length(); i ++)	
-		if (input.substring(i).equals("@"))
+		}
+		return valid;
+	}
+
+	public boolean contentChecker(String contentCheck)
+	{
+		boolean valid = false;
+		if (contentCheck == content)
 		{
-			valid  = false;
+			valid = true;
+		}
+		
+		
+		for (int i=0; i >  contentCheck.length(); i++ )
+		{
+			if (contentCheck.substring(i, i + 1) == " ") 
+			{
+				valid = false;
+			}
+		}
+		
+		if (contentCheck.length() > 5)
+		{
+			valid = true;
 		}
 		return valid;
 	}
 	
-	public boolean contentChecker(String contentCheck)
-	{
-		return false;
-	}
-	
 	public boolean cuteAnimalMemeChecker(String input)
 	{
-		return false;
+		boolean valid = true;
+		if (input == "pepe")
+		{
+			valid = false;
+		}
+		return valid;
 	}
-	
+
 	public boolean shoppingListChecker(String shoppingItem)
 	{
 		boolean valid  = false;
@@ -182,7 +207,7 @@ public class Chatbot
 		{
 			valid = true;
 		}
-		return valid;
+		return valid ;
 	}
 	
 	public boolean movieGenreChecker(String genre)
@@ -211,12 +236,14 @@ public class Chatbot
 
 	public boolean keyboardMashChecker(String sample)
 	{
-//		String mash = "qwertyuiop[]asdfghjkl;'zxcvbnm,./0;";
-//		for (int i=0; i < mash.length() - 2; i ++)
-//		{
-//			
-//		}
-	return false;
+		boolean valid  = false;
+		String[] Mash = new String[] {"sdf", "dfg", "cvb", "kjh", ",./"};
+    for (String mash : Mash) {
+    	if (mash.equalsIgnoreCase(sample)) {
+    		valid = true;
+    	}
+    }
+	return valid;
 	}
 	
 	public List<Movie> getMovieList()
@@ -236,7 +263,7 @@ public class Chatbot
 
 	public String [] getQuestions()
 	{
-		return null;
+		return questions;
 	}
 	
 	public String[] getVerbs()
