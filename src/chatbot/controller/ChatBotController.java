@@ -1,16 +1,18 @@
 package chatbot.controller;
 import chatbot.view.ChatotDisplay;
+import chatbot.view.ChatFrame;
 import chatbot.model.Chatbot;
 public class ChatBotController
 {
 	private Chatbot chatbot;
 	private ChatotDisplay display;
-//	private Chatframe appFrame;
+	private ChatFrame appFrame;
 
 	public ChatBotController()
 	{
 		chatbot = new Chatbot("Noah Uffens");
 		display = new ChatotDisplay();
+		appFrame = new ChatFrame(this);
 	}
 		public void start()
 		{
