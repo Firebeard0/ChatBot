@@ -6,17 +6,19 @@ import chatbot.view.ChatPanel;
 public class ChatFrame extends JFrame
 {
 	private ChatBotController appController;
-	private ChatPanel appPane;
+	private ChatPanel appPanel;
 	public ChatFrame(ChatBotController appController)
 	{
 		super();
 		this.appController = appController;
-		//appPane = new ChatPanel(appController);
+		appPanel = new ChatPanel(appController);
 		setupFrame();
 	}
 	
 	private void setupFrame()
 {
+		
+		this.setContentPane(appPanel);
 		this.setResizable(false);
 		this.setTitle("Chatting with chuck");
 		this.setResizable(false);
