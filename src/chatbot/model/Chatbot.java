@@ -4,7 +4,10 @@ import java.util.List;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+
 public class Chatbot
+
+//declares the variables
 {
 	private List<Movie> movieList;
 	private List<String> shoppingList;
@@ -18,6 +21,7 @@ public class Chatbot
 	private String intro;
 	private LocalTime currentTime;
 	
+	//initializes variables
 	public Chatbot(String username)
 	{
 		this.movieList = new  ArrayList<Movie>();
@@ -57,7 +61,7 @@ public class Chatbot
 		movieList.add(new Movie("Spiderman"));
 		movieList.add(new Movie("Hidden Figures"));
 	}
-	
+	// makes a list containing strings about food
 	private void buildShoppingList()
 	{
 		shoppingList.add("snacks");
