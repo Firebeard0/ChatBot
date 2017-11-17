@@ -16,22 +16,42 @@ public class ChatBotController
 	}
 		public void start()
 		{
-			String response = display.collectResponse("What do you want to talk about?");
+			display.displayText("welcome to Chatbot");
+//			String response = display.collectResponse("What do you want to talk about?");
 			
-			while (chatbot.lengthChecker(response) && !chatbot.quitChecker(response))
-			{
-				response = popupChat(response);
-				response = display.collectResponse(response);
-			}
+//			while (chatbot.lengthChecker(response) && !chatbot.quitChecker(response))
+//			{
+//				response = popupChat(response);
+//				response = display.collectResponse(response);
+//			}
 		}
 	
 	
 	private String popupChat(String chat)
 	{
 		String chatbotSays = "";
-		chatbotSays += chatbot.processConversation(chat);
+		
 		
 		return chatbotSays;
+	}
+	
+	public String interactWithChabot(String input) {
+		String chatbotSays = "";
+		
+		if (chatbot.quitChecker(input))
+		{
+			close();
+		}
+		chatbotSays += chatbot.processConversation(input);
+		
+		return chatbotSays;
+		
+	}
+	
+	private void close()
+	{
+		display.displayText("Later noob");
+		System.exit(0);
 	}
 //   public static void main(String [] args)
 //   {

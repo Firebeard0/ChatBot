@@ -19,6 +19,7 @@ public class ChatPanel extends JPanel
 	private JTextField inputField;
 	private JTextArea chatArea;
 	private SpringLayout appLayout;
+	private JButton checkerButton;
 	
 	
 	
@@ -32,6 +33,7 @@ public class ChatPanel extends JPanel
 
 		setupPanel();
 		setupLayout();
+		setupListeners();
 	}
 	private void setupPanel()
 	{
@@ -52,6 +54,21 @@ public class ChatPanel extends JPanel
 		appLayout.putConstraint(SpringLayout.NORTH, chatArea, 46, SpringLayout.NORTH, this);
 		appLayout.putConstraint(SpringLayout.SOUTH, chatButton, -10, SpringLayout.SOUTH, this);
 		appLayout.putConstraint(SpringLayout.EAST, chatButton, -10, SpringLayout.EAST, this);
+	}
+	
+	private void setupListeners()
+	{
+		chatButton.addActionListener(new ActionListener()
+				{
+			public void actionPerformed(ActionEvent click)
+			{
+				String  userText = inputField.getText();
+				String displayText = appController.interactWithChabot(userText);
+				chatArea.append(displayText);
+				inputField.setText("");
+			}
+				});
+		
 	}
 	
 }

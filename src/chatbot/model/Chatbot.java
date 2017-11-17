@@ -38,7 +38,7 @@ public class Chatbot
 		this.followUps = new String [5];
 		
 		buildVerbs();
-//		buildTopics();
+		buildTopics();
 //		buildFollowups();
 		buildQuestions();
 		buildShoppingList();
@@ -80,7 +80,16 @@ public class Chatbot
 	{
 		
 	}
-	
+	private void buildTopics()
+	{
+		topics[0]="animals";
+		topics[1]="Disney land";
+		topics[2]="cannibals";
+		topics[3]="school";
+		topics[4]="superheroes";
+		topics[5]="stupidity";
+		topics[6]="ferocity";
+	}
 	private void buildQuestions()
 	{
 		questions[0]="What is your name?";
