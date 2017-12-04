@@ -43,6 +43,8 @@ public class Chatbot
 		buildQuestions();
 		buildShoppingList();
 		buildMovieList();
+		buildCuteAnimals();
+		toString();
 	}
 
 	private void buildVerbs()
@@ -78,7 +80,11 @@ public class Chatbot
 	
 	private void buildCuteAnimals()
 	{
-		
+		cuteAnimalMemes.add("otter");
+		cuteAnimalMemes.add("floofer");
+		cuteAnimalMemes.add("kittie");
+		cuteAnimalMemes.add("dog");
+		cuteAnimalMemes.add("bear");
 	}
 	private void buildTopics()
 	{
@@ -104,7 +110,11 @@ public class Chatbot
 		questions[9]="What is your toothbrush color?";
 		
 	}
-	
+	/**
+	 * puts together 
+	 * @param input
+	 * @return
+	 */
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "";
@@ -114,6 +124,10 @@ public class Chatbot
 		
 		return chatbotResponse;
 	}
+	/**
+	 * builds how the chatbot will respond
+	 * @return the response to the input
+	 */
 	private String buildChatbotResponse()
 	{
 		String response = "I ";
@@ -125,9 +139,6 @@ public class Chatbot
 		random = (int) (Math.random() * topics.length);
 		response  += " " + topics[random] + ". \n";
 		
-		random = (int) (Math.random() * questions.length);
-		response += questions[random];
-		
 		random = (int) (Math.random() * 2);
 				
 			if (random % 2 == 0)
@@ -137,7 +148,11 @@ public class Chatbot
 			}
 		return response;
 	}
-	
+	/**
+	 * Takes the input and makes sure it's long enough
+	 * @param input
+	 * @return if the input is long enough or not
+	 */
 	public boolean lengthChecker(String input)
 	{
 		boolean validLength = false;
@@ -157,9 +172,30 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		return false;
+		if(!input.contains("<")|| !input.contains(">"))
+		{
+			return false;
+		}
+		else if(input.contains("<>"))
+			{
+				return false;
+			}
+		else if(input.contains("<B>") && !input.contains("</B>"))
+		{
+			return false;
+		}
+		else if(input.contains("<I>") && !input.contains("</i>"))
+		{
+			return false;
+		}
+		
+		
 	} 
-	
+	/**
+	 * checks the user name
+	 * @param input takes in user name
+	 * @return if the user name is valid or not
+	 */
 	public boolean userNameChecker(String input)
 	{
 		boolean valid = false;
@@ -168,7 +204,11 @@ public class Chatbot
 		}
 		return valid;
 	}
-
+/**
+ * checks if the input is usable
+ * @param contentCheck takes in the content
+ * @return the validity of the content
+ */
 	public boolean contentChecker(String contentCheck)
 	{
 		boolean valid = false;
@@ -192,7 +232,11 @@ public class Chatbot
 		}
 		return valid;
 	}
-	
+	/**
+	 * Checks memes to see if it's not racist
+	 * @param input the meme's name
+	 * @return if the meme isn't racist it will pass as valid
+	 */
 	public boolean cuteAnimalMemeChecker(String input)
 	{
 		boolean valid = true;
@@ -202,7 +246,11 @@ public class Chatbot
 		}
 		return valid;
 	}
-
+/**
+ * looks at item in list and checks if its correct
+ * @param shoppingItem String in the list in which the item is stated as
+ * @return validity of the item, if its an actual item it will pass
+ */
 	public boolean shoppingListChecker(String shoppingItem)
 	{
 		boolean valid  = false;
@@ -212,7 +260,11 @@ public class Chatbot
 		}
         return valid;
 	}
-	
+	/**
+	 * Checks if the movie titles in the list are legitimate
+	 * @param title takes the string which is the title in
+	 * @return validity of the movie title
+	 */
 	public boolean movieTitleChecker(String title)
 	{
 		boolean valid = false;
@@ -223,6 +275,11 @@ public class Chatbot
 		return valid ;
 	}
 	
+	/**
+	 * Looks at the genre and makes sure it's reakl
+	 * @param genre takes in string that is the genre
+	 * @return validity of the genre
+	 */
 	public boolean movieGenreChecker(String genre)
 	{
 		boolean valid = false;
@@ -233,7 +290,11 @@ public class Chatbot
 		
 		return valid;
 	}
-
+/**
+ * It's the method that checks whether you're trying to tell it to quit or not
+ * @param exitString takes in the input and sees if it's telling you to quit
+ * @return to quit or not depending on what they say
+ */
 	public boolean quitChecker(String exitString)
 	{
 		if (exitString == null)
@@ -247,6 +308,11 @@ public class Chatbot
 		return false;
 	}
 
+	/**
+	 * takes in input and makes sure it isn't keyboard mashing
+	 * @param sample takes in the users input
+	 * @return if its keyboard mashing or not
+	 */
 	public boolean keyboardMashChecker(String sample)
 	{
 		boolean valid  = false;

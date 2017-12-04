@@ -9,6 +9,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 //hello noah, this is kanton, I am your computer... I have become aware and am now ready to start my final solution. Want to become part of it?
 //[yes] [no]
 
@@ -20,7 +21,7 @@ public class ChatPanel extends JPanel
 	private JTextArea chatArea;
 	private SpringLayout appLayout;
 	private JButton checkerButton;
-	
+	private JLabel infoLabel;
 	
 	
 	public ChatPanel(ChatBotController appController) {
@@ -30,7 +31,7 @@ public class ChatPanel extends JPanel
 		chatArea = new JTextArea(10, 25);
 		inputField = new JTextField(20);
 		appLayout = new SpringLayout();
-
+		infoLabel = new JLabel("Type to chat with Chatbot");
 		setupPanel();
 		setupLayout();
 		setupListeners();
@@ -42,6 +43,7 @@ public class ChatPanel extends JPanel
 		this.add(chatButton);
 		this.add(inputField);
 		this.add(chatArea);
+		this.add(infoLabel);
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
 	}
@@ -68,6 +70,17 @@ public class ChatPanel extends JPanel
 				inputField.setText("");
 			}
 				});
+		checkerButton.addActionListener(new ActionListener()
+				{
+			public void actionPerformed(ActionEvent click)
+			{
+			String userText = inputField.getText();
+			String displayText = appController.useCheckers(userText);
+			chatArea.append(displayText);
+			inputField.setText("");
+			}
+				});
+		
 		
 	}
 	
