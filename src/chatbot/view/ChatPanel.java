@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 //hello noah, this is kanton, I am your computer... I have become aware and am now ready to start my final solution. Want to become part of it?
 //[yes] [no]
 
@@ -22,6 +23,7 @@ public class ChatPanel extends JPanel
 	private SpringLayout appLayout;
 	private JButton checkerButton;
 	private JLabel infoLabel;
+	private JScrollPane scrollPane;
 	
 	
 	public ChatPanel(ChatBotController appController) {
@@ -32,6 +34,9 @@ public class ChatPanel extends JPanel
 		inputField = new JTextField(20);
 		appLayout = new SpringLayout();
 		infoLabel = new JLabel("Type to chat with Chatbot");
+		scrollPane = new JScrollPane();
+		
+		setupScrollPane();
 		setupPanel();
 		setupLayout();
 		setupListeners();
@@ -82,6 +87,14 @@ public class ChatPanel extends JPanel
 				});
 		
 		
+	}
+	private void setupScrollPane()
+	{
+		scrollPane.setViewportView(chatArea);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		chatArea.setLineWrap(true);
+		chatArea.setWrapStyleWord(true);
 	}
 	
 }

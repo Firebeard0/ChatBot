@@ -20,6 +20,7 @@ public class Chatbot
 	private String content;
 	private String intro;
 	private LocalTime currentTime;
+	private String []  letters;
 	
 	//initializes variables
 	public Chatbot(String username)
@@ -32,10 +33,11 @@ public class Chatbot
 		this.username = username;
 		this.content = "Content"; 
 		this.intro = "";
-		this.currentTime = null;
+		this.currentTime = LocalTime.now();
 		this.topics = new String [7];
 		this.verbs = new String [4];
 		this.followUps = new String [5];
+		this.letters = new String [26];
 		
 		buildVerbs();
 		buildTopics();
@@ -47,6 +49,36 @@ public class Chatbot
 		toString();
 	}
 
+	private void alphabet()
+	{
+		letters[1] = "a";
+		letters[2] = "b";
+		letters[3] = "c";
+		letters[4] = "d";
+		letters[5] = "e";
+		letters[6] = "f";
+		letters[7] = "g";
+		letters[8] = "h";
+		letters[9] = "";
+		letters[10] = "j";
+		letters[11] = "k";
+		letters[12] = "l";
+		letters[13] = "m";
+		letters[14] = "n";
+		letters[15] = "o";
+		letters[16] = "p";
+		letters[17] = "q";
+		letters[18] = "r";
+		letters[19] = "s";
+		letters[20] = "t";
+		letters[21] = "u";
+		letters[22] = "v";
+		letters[23] = "w";
+		letters[24] = "x";
+		letters[25] = "y";
+		letters[26] = "z";
+		
+	}
 	private void buildVerbs()
 	{
 		verbs[0] = "like";
@@ -118,6 +150,8 @@ public class Chatbot
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "";
+		currentTime = LocalTime.now();
+		chatbotResponse+= currentTime.getHour() + ":" + currentTime.getMinute() +  " ";
 		chatbotResponse += "you said:" + "\n" + input + "\n";
 		
 		chatbotResponse += buildChatbotResponse();
@@ -172,7 +206,7 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		if(!input.contains("<")|| !input.contains(">"))
+		if(!input.contains("<") && !input.contains(">"))
 		{
 			return false;
 		}
@@ -180,14 +214,26 @@ public class Chatbot
 			{
 				return false;
 			}
-		else if(input.contains("<B>") && !input.contains("</B>"))
+		else if (input.contains("< >"))
 		{
 			return false;
 		}
-		else if(input.contains("<I>") && !input.contains("</i>"))
+		for (int i = 0; i < 27; i++)
 		{
-			return false;
+			if (input.toLowerCase().contains("<" + letters[i] + ">") && !input.toLowerCase().contains("</" + letters[i] + ">"))
+			{
+				return false;
+			}
 		}
+		return true;
+//		else if(input.contains("<B>") && !input.contains("</B>"))
+//		{
+//			return false;
+//		}
+//		else if(input.contains("<I>") && !input.contains("</i>"))
+//		{
+//			return false;
+//		}
 		
 		
 	} 
