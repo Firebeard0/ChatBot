@@ -1,5 +1,4 @@
 package chatbot.controller;
-import chatbot.view.ChatotDisplay;
 
 /**
  * 
@@ -7,19 +6,22 @@ import chatbot.view.ChatotDisplay;
  * @version 21.11.17 added frame 1.3
  * Date and major revision
  **/
-import chatbot.view.ChatFrame;
-import chatbot.model.Chatbot;
+import chatbot.view.*;
+import chatbot.model.*;
+
 public class ChatBotController
 {
 	private Chatbot chatbot;
 	private ChatotDisplay display;
 	private ChatFrame appFrame;
 
+	private ChatTwitter twitter;
 	public ChatBotController()
 	{
 		chatbot = new Chatbot("Noah Uffens");
 		display = new ChatotDisplay();
 		appFrame = new ChatFrame(this);
+		twitter = new ChatTwitter(this);
 	}
 		public void start()
 		{
@@ -76,7 +78,6 @@ public class ChatBotController
 		{
 			response+= "The shopping list is yummy";
 		}
-		if(chatbot.)
 		// continue with all checkers
 		
 		return response;
@@ -86,6 +87,11 @@ public class ChatBotController
 		display.displayText("Later noob");
 		System.exit(0);
 	}
+	public Chatbot getChatbot()
+	{
+		return chatbot;
+	}
+	
 //   public static void main(String [] args)
 //   {
 //	   ChatotDisplay test = new ChatotDisplay();
@@ -93,4 +99,18 @@ public class ChatBotController
 //	   test.displayText("ask a question here");
 //	   
 //   }
+	public void handleError(Exception error)
+	{
+		display.displayText(error.getMessage());
+	}
+	public void tweet(String text)
+	{
+		twitter.sendTweet(text);
+	}
+	
+	
+	public String search(String text)
+	{
+		return twitter.getMostCommonWord(text);
+	}
 }

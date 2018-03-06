@@ -25,4 +25,9 @@ public class ChatFrame extends JFrame
 		this.setSize(700, 700);
 		this.setVisible(true);
 }
+	
+	public ChatBotController getappController()
+	{
+		return appController;
+	}
 }

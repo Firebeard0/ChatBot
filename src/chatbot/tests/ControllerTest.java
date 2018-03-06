@@ -28,7 +28,7 @@ public class ControllerTest
 	}
 
 	@Test
-	public void testChatbotController()
+	public void testChatBotController()
 	{
 		assertNotNull("Chatbot should be initialized in constructor", testedController.getChatbot());
 		assertNotNull("PopupDisplay should be initialized in constructor", testedController.getDisplay());

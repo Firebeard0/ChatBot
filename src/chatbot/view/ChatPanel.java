@@ -24,6 +24,7 @@ public class ChatPanel extends JPanel
 	private JButton checkerButton;
 	private JLabel infoLabel;
 	private JScrollPane scrollPane;
+	private JButton searchButton;
 	
 	
 	public ChatPanel(ChatBotController appController) {
@@ -35,6 +36,7 @@ public class ChatPanel extends JPanel
 		appLayout = new SpringLayout();
 		infoLabel = new JLabel("Type to chat with Chatbot");
 		scrollPane = new JScrollPane();
+		searchButton = new JButton("Search");
 		
 		setupScrollPane();
 		setupPanel();
@@ -47,7 +49,7 @@ public class ChatPanel extends JPanel
 		this.setLayout(appLayout);
 		this.add(chatButton);
 		this.add(inputField);
-		this.add(chatArea);
+//		this.add(chatArea);
 		this.add(infoLabel);
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
@@ -85,6 +87,15 @@ public class ChatPanel extends JPanel
 			inputField.setText("");
 			}
 				});
+		
+		searchButton.addActionListener(newActionListener()){
+			public void actionPerformed(ActionEvent click)
+			{
+				String usernameToSearch = inputField.getText();
+				
+				chatArea.setText(appController);
+			}
+		}
 		
 		
 	}
