@@ -2,6 +2,9 @@ package chatbot.model;
 import chatbot.controller.*;
 import twitter4j.*;
 import java.util.*;
+
+import javax.net.ssl.SSLEngineResult.Status;
+
 import java.text.*;
 
 
@@ -38,6 +41,18 @@ public String getMostCommonWord(String username) {
 	collectTweets(username);
 	turnStatusesToWords();
 	String [] boring = createIgnoredWordArray();
+	trimTheBoringWords(boring);
+	removeBlanks();
+	generateWordCount();
+	
+	ArrayList<Map.Entry<String, Integer>> sorted = sortHashMap();
+	
+	String mostCommonWord = sorted.get(0).getKey();
+	int maxWord = 0;
+	
+	maxWord = sorted.get(0).getValue();
+	
+	mostCommon = "The most common word in " + username + "'s" + searchedTweets.size() + "tweets is " + mostCommonWord + ", and it was used" + maxWord  + "times, \nThis is" + (DecimalFormat.getPercentInstance().format())"of total words:  "
 	return mostCommon;
 }
 private void collectTweets(String username)
@@ -66,7 +81,7 @@ private void turnStatusesToWords()
 		String [] tweetWords = tweetText.split(" ");
 		for (int i = 0; i < tweetWords.length; i++)
 		{
-			tweetedWords.add(removePunctuation(tweetWords[index]).trim());
+			tweetedWords.add(removePunctuation(tweetWords[i]).trim());
 		}
 	}
 }
@@ -95,7 +110,7 @@ private String [] createIgnoredWordArray()
 	
 	Scanner wordScanner = new Scanner(fileText);
 	
-	while(wordSscanner.hasNextLine())
+	while(wordScanner.hasNextLine())
 	{
 		wordScanner.nextLine();
 		wordCount++;
@@ -104,8 +119,8 @@ private String [] createIgnoredWordArray()
 	boringWords = new String [wordCount];
 	wordScanner.close();
 	
-	wordScannner = new Scanner(this.getClass().getResourceAsStream("data/commonWords.txt"));
-	for(int i = 0; i < boringWords.length; i++;)
+	wordScanner = new Scanner(this.getClass().getResourceAsStream("data/commonWords.txt"));
+	for(int i = 0; i < boringWords.length; i++)
 	{
 		boringWords[i] = wordScanner.nextLine();
 	}
@@ -113,4 +128,26 @@ private String [] createIgnoredWordArray()
 	wordScanner.close();
 	return boringWords;
 	}
+
+private void trimTheBoringWords(String [] boringWords)
+{
+	for (int i = tweetedWords.size() - 1; i >= 0; i--)
+	{
+		for (int removeI = 0; removeI < boringWords.length; removeI++)
+		{
+			if (tweetedWords.get(i).equalsIgnoreCase(boringWords[removeI]))
+			{
+				tweetedWords.remove(i);
+				removeI = boringWords.length;
+			}
+		}
+	}
+}
+private ArrayList<Map.Entry<String, Integer>> sortHashMap()
+{
+	ArrayList<Map.Entry<String, Integer>> entries = new ArrayList<Map.Entry<String, Integer>>(wordAndCount.entrySet());
+	entries.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+	
+	return entries;
+}
 }

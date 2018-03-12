@@ -113,4 +113,12 @@ public class ChatBotController
 	{
 		return twitter.getMostCommonWord(text);
 	}
+	public ChatotDisplay getDisplay()
+	{
+		return display;
+	}
+	public interactWithChatbot()
+	{
+		
+	}
 }
